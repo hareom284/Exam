@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="number"> <br><br>
+    <div style="margin-left: 49px;font-size: larger;">+</div>
+    <input type="number" id="number2"> <br> <br>
+    <button style="margin-left:49px;" onclick="return sum()">Sum</button>
+    <br><br>
+    <input type="number" id="result" disabled>
+    
+</body>
+<script>
+    function sum()
+    {
+    
+
+    var number1 = document.getElementById('number').value;
+    var number2 = document.getElementById("number2").value;
+    var sum = parseInt(number1)+ parseInt(number2);
+    console.log(sum);
+    document.getElementById('result').value=sum;
+    }
+</script>
+</html>

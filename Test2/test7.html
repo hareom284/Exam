@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Day and Month Generator</title>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(71, 158, 158);
+}
+
+.container {
+    /* center in the browser  */
+    margin: 100px auto 0px auto;
+    display: block;
+    height: 490px;
+    width: 300px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.header {
+    background-color: aqua;
+    color: white;
+    height: 200px;
+}
+
+.month {
+    padding-top: 40px;
+    text-align: center;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+.year,
+.day {
+    text-align: center;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    position: relative;
+    float: left;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    zoom: 1.2;
+    *display: inline;
+}
+
+
+/* loading in effet in csss */
+
+#loading {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 1s linear infinite;
+    /* Safari */
+    animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+h3 {
+    color: white;
+    font-size: 30px;
+    text-shadow: 2px 1px 3px aqua;
+}
+
+#content {
+    display: none;
+}
+
+#main {
+    margin-top:30%;
+    margin-left:30%;
+    display: block;
+    /*used js to change it to none so that it disappears on loading*/
+}
+
+
+/* end of loading effect  */
+</style>
+</head>
+
+<body>
+    <div id="main">
+        <div id="loading"></div>
+        <h3 id="para">0% loaded</h3>
+    </div>
+    <div class="container" id="content">
+        <div class="header">
+            <div class="month" id="month">Unset</div>
+            <div class="year" id="year">unset</div>
+            <div class="day" id="day">unset</div>
+        </div>
+        <div>
+            <ul>
+                <li>S</li>
+                <li>M</li>
+                <li>T</li>
+                <li>W</li>
+                <li>T</li>
+                <li>F</li>
+                <li>S</li>
+            </ul>
+            <div id="generate">
+
+            </div>
+
+        </div>
+    </div>
+    <script>
+        // loading in javascript 
+
+alert("Please upvote if you like my work");
+alert("please give comment if you want to suggest me")
+
+
+window.onload = function one() {
+
+    var loading = document.getElementById("loading"); //got the bar
+    var width = 0; //got the width
+    var lag = setInterval(load, 50); //set the var lag to providee intetval
+    var main = document.getElementById("main"); //to be shown during loading
+    var content = document.getElementById("content"); //to be shown after loading
+    var h3 = document.getElementById("para");
+
+    function load() {
+        if (width >= 100) { //after 100% loading events
+            clearInterval(loading);
+            main.style.display = 'none';
+            content.style.display = 'block';
+
+        } else { //during loading events
+            width++;
+            h3.innerHTML = width + '% loaded';
+
+        }
+    }
+    getDat();
+
+}
+
+function getDat() {
+    let date = new Date();
+    let weekday = date.getDay();
+    let day = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+    // console.log(month);
+    console.log(day);
+    console.log(weekday);
+    let weekDay = ["sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+    // console.log(weekDay[day]);
+    let Month = ["January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ];
+    // console.log(Month[month]);
+    //setting day month and year to header
+    //get date from window date and time 
+    document.getElementById("month").innerHTML = Month[month];
+    document.getElementById("year").innerHTML = year;
+    document.getElementById("day").innerHTML = day;
+    // get number of day in one month 
+
+    //adding nOfDays in 
+    function nOfDays(month, year) {
+        return new Date(year, month, 0).getDate();
+    }
+    dat = new Date(year, month, 01);
+    var first_day = dat.getDay()
+    console.log("first_day", first_day);
+    var last_day = nOfDays(month, year);
+    // console.log(nOfDay);
+
+    var shit = 1;
+    var generate = "";
+    // console.log(day);
+    //7 cloumns * six and six row  = 42 
+
+    // generate date from this algorithms 
+    // https://www.plus2net.com/javascript_tutorial/date-project-calendar1.php
+    for (let int = 0; int < 42; int++) {
+
+        //after a week
+        if ((int % 7) == 0) {
+            generate += `</ul><ul>`
+        }
+        if ((int >= first_day) && (shit <= last_day + 1)) {
+            if (shit == day) {
+                generate += `<li style="background-color:aqua;border-radius:10px;">${shit++}</li>`;
+            } else {
+                generate += `<li> ${shit++} </li>`;
+            }
+        } else {
+            generate += `<li>-</li>`;
+        }
+
+
+    }
+    generate += `</ul>`
+    // console.log(generate);
+
+    document.getElementById("generate").innerHTML = generate;
+
+}
+    </script>
+
+</body>
+
+</html>

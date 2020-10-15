@@ -1,0 +1,55 @@
+1.
+
+SELECT name FROM staffs
+
+=========================
+2.
+SELECT departmentid FROM staffs
+
+===========================
+3.
+
+SELECT * FROM staffs ORDER BY name
+
+===============================
+
+4.
+SELECT * FROM staffs ORDER BY name 
+
+SELECT * FROM staffs  ORDER BY departmentid DESC
+
+==============================================
+
+SELECT * FROM `staffs` WHERE name='Kay Thwe' AND name='Thae Su Wai'
+
+=============================================================
+SELECT * FROM departments WHERE name="Admin"
+============================================================
+7
+SELECT * FROM staffs WHERE name LIKE “a%”
+================================================
+8
+SELECT * FROM staffs WHERE name LIKE “%e”
+=============================================
+9
+SELECT * FROM staffs WHERE salary BETWEEN 100000 AND  500000
+
+===========================================
+SELECT * FROM staffs WHERE joindate LIKE “2-14%”
+
+====================================================
+SELECT COUNT(*) AS admin FROM departments where name="Admin"
+
+======================================================
+SELECT * FROM departments WHERE name="manager"
+
+===============================================
+
+SELECT * FROM `staffs` LIMIT 5
+==============================================
+
+SELECT salary FROM  `staffs`  WHERE salary ORDER  BY DESC
+
+===================================================
+SELECT salary FROM `staffs` INNER JOIN `departments` ON staffs.id = departments.id
+==================================================
